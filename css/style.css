@@ -120,6 +120,7 @@ h1 {
 }
 
 .cta-btn {
+  position: relative;
   text-decoration: none;
   display: inline-block;
   margin-top: 20px;
@@ -131,10 +132,25 @@ h1 {
   border-radius: 0;
   border: none;
   background-color: var(--softRed);
+  z-index: 1;
+  overflow: hidden;
 }
 
-.cta-btn:hover {
+.cta-btn::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: -25px;
+  transform: skew(45deg);
   background-color: var(--veryDarkBlue);
+  z-index: -1;
+  transition: all 0.4s ease-in-out;
+}
+
+.cta-btn:hover::after {
+  width: 130%;
 }
 
 .new {
