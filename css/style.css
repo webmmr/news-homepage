@@ -38,6 +38,10 @@ p {
   line-height: 1.7;
 }
 
+.hidden {
+  display: none;
+}
+
 header {
   margin-top: 80px;
   margin-bottom: 50px;
@@ -47,6 +51,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .nav {
@@ -54,7 +59,7 @@ header {
   display: flex;
 }
 
-.nav-item:not(:first-child) {
+.desktop-nav .nav-item:not(:first-child) {
   margin-left: 40px;
 }
 
@@ -67,9 +72,50 @@ header {
   color: var(--softRed);
 }
 
+.mobile-nav {
+  background-color: var(--offWhite);
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.05);
+  height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  transition: all 0.3s linear;
+}
+
+@keyframes slide-right {
+  0% {
+    width: 0px;
+    opacity: 0;
+  }
+  100% {
+    width: 300px;
+    opacity: 1;
+  }
+}
+.slide-right {
+  animation-duration: 0.4s;
+  animation-name: slide-right;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.mobile-nav .nav {
+  flex-direction: column;
+  margin-top: 100px;
+  margin-left: 50px;
+}
+
+.mobile-nav .nav-item:not(:last-child) {
+  margin-bottom: 20px;
+}
+
 .mobile-bar {
   display: none;
-  position: relative;
+  position: absolute;
+  right: 0;
+  margin-bottom: 13px;
 }
 
 .first,
@@ -79,7 +125,24 @@ header {
   width: 30px;
   height: 2px;
   position: absolute;
-  left: 0;
+  right: 0;
+  transition: all 0.1s ease-in;
+}
+
+.mobile-bar.open {
+  z-index: 20;
+}
+
+.open .second {
+  display: none;
+}
+
+.open .first {
+  transform: translateY(12px) rotateZ(45deg);
+}
+
+.open .third {
+  transform: rotateZ(-45deg);
 }
 
 .first {
@@ -224,19 +287,47 @@ h2 {
 }
 
 @media screen and (max-width: 400px) {
+  header {
+    margin-top: 50px;
+  }
+
   .container {
     max-width: 375px;
   }
-
   .desktop-nav .nav {
     display: none;
   }
+  .mobile-nav .nav {
+    display: block;
+  }
 
-  .desktop-nav .mobile-bar {
+  .mobile-bar {
     display: block;
   }
   .featured-section,
-  .blog-section {
+  .blog-section,
+  .featured-content {
     flex-direction: column;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+  }
+
+  .featured {
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .custom-width {
+    width: 40%;
+  }
+
+  .blog-content {
+    padding: 30px;
   }
 }
