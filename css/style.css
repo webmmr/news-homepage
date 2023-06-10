@@ -276,13 +276,16 @@ h2 {
   font-size: 2rem;
 }
 
-.blog-content h4 {
+.blog-content a {
+  text-decoration: none;
+
   color: var(--veryDarkBlue);
   font-size: 1.2rem;
   margin-bottom: 10px;
+  font-weight: 700;
 }
 
-.blog-content h4:hover {
+.blog-content a:hover {
   color: var(--softRed);
 }
 
